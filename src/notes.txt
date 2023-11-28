@@ -2,7 +2,7 @@ Content
 
 1.useRef, useReducer
 
-2.Front end game demonstration - hangman / tictactoe / tile match
+2.Front end game demonstration - tictactoe
 
 *************************************************************************************************************************
 
@@ -10,12 +10,69 @@ Content
 
 what is useRef ?
 
+===>useRef returns a mutable ref object whose .current property is initialized to the passed argument (initial value).
+    The reurned object will persist for the full lifetime of the component.
+
 ===>It is a reacts built in feature.
 
 ===>It is a one of the hook.
 
 ===>It can be used to access a DOM element directly.
     இதன் மூலம் DOM element ஐ நேரடியாக access செய்யலாம்.
+
+
+===>Example
+
+import React , { useRef } from 'react'
+
+function App() {
+
+  const inputRef = useRef (null);
+
+  const handleButtonClick = () => {
+
+  console.log(inputRef.current.value);
+  }
+
+  return (
+    <div>
+      <input type='text' placeholder='Enter a Text' ref={inputRef} />
+      <button onClick={handleButtonClick} >Submit </button>
+    </div>
+  )
+}
+
+export default App
+
+
+
+output:
+
+1)console.log(inputRef); என்று கொடுக்கும் போது button ஐ கிளிக் செய்தால் console ல் output ஆனது {current: input} என்று வரும்.
+
+2)console.log(inputRef.current); என்று கொடுக்கும் போது button ஐ கிளிக் செய்தால் console ல் output ஆனது <input type="text" placeholder="Enter a Text"> என்று வரும்.
+
+3)console.log(inputRef.current.value); 
+inputRef.current.value = "........";
+என்று கொடுக்கும் போது button ஐ கிளிக் செய்தால் console ல் output ஆனது நாம் என்ன input கொடுக்கிறோமோ அது வரும்.
+
+4)const handleButtonClick = () => {
+  inputRef.current.focus();
+  }
+  என்று கொடுக்கும் போது button ஐ கிளிக் செய்தால் button ஐ கிளிக் செய்யும் போது cursor ஆனது input box க்குள் வந்துவிடும்.
+  
+
+
+நினைவில் கொள்க:
+
+inputRef என்பது {current: input} ஐ குறிக்கிறது.
+
+inputRef.current என்பது input type ஐ குறிக்கிறது.
+
+inputRef.current.value என்பது assign செய்த value ஐ குறிக்கிறது.
+
+
+                     ********************************************************
 
 ===>Example : 1
 
@@ -173,6 +230,10 @@ what is useReducer ?
 
 ===> Its a hook that is built-in within the react library and it is used for managing more complex state logic in your components.
 
+===> useReducer is a hook that is used for state management.
+     state management க்காக useReducer என்ற hook பயன்படுகிறது.
+     "useState" க்கான replacement தான் useReducer என்ற hook ஆகும்.
+
 ===>Example
 
 //! useState vs useReduce 
@@ -315,6 +376,8 @@ output:
 screen ல் type something என்ற Button வந்துவிடும்.
 
 input box ல் நாம் என்ன type செய்கிறோமோ அல்லது உள்ளீடாக கொடுக்கிறோமோ அதுவும் வந்துவிடும்.
+
+                    *********************************************************
 
 *************************************************************************************************************************
 
